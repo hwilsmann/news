@@ -1,0 +1,173 @@
+@import 'variables';
+
+.section--news {
+  color: #ccc;
+  min-height: 100vh;
+  padding: 100px 0 660px 0;
+
+  @include media("xs") {
+    padding: 50px 0 1260px 0;
+  }
+
+  b,
+  strong {
+    color: #fff;
+  }
+
+  > .container {
+    height: 100%;
+
+    > .row {
+      align-items: flex-start;
+      display: flex;
+      gap: 25px;
+      height: 100%;
+      justify-content: space-between;
+      position: relative;
+
+      @include media("xs") {
+        align-items: center;
+        flex-direction: column;
+      }
+
+      > .center {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+        width: 100%;
+        max-width: 952px;
+      }
+
+      > .right {
+        max-width: 100px;
+      }
+    }
+  }
+  
+  .list--flags {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 8px;
+
+    > .item {
+      cursor: pointer;
+      display: flex;
+
+      &:not(.--is-active) {
+        &:hover {
+          > img {
+            filter: grayscale(0);
+          }
+        }
+
+        > img {
+          filter: grayscale(1);
+        }
+      }
+
+      > img {
+        width: 35px;
+        transition: filter $transition;
+      }
+    }
+  }
+
+  .description {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+
+    > p {
+      font-size: 24px;
+    }
+  }
+
+  .--video {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+    transition: color $transition;
+
+    &:hover {
+      color: $white;
+      text-decoration: none;
+
+      > svg {
+        fill: $white;
+      }
+    }
+
+    > svg {
+      fill: #ccc;
+      height: 75px;
+      width: 75px;
+      transition: color $transition;
+    }
+  }
+}
+
+.popup-overlay {
+  background-color: rgba($black, .5);
+  height: 100%;
+  width: 100%;
+  left: 0;
+  opacity: 1;
+  position: fixed;
+  top: 0;
+  transition: opacity $transition, visibility $transition;
+  visibility: visible;
+
+  &:not(.--is-visible) {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  > .container {
+    align-items: center;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+
+    > .popup {
+      align-items: flex-end;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      width: 100%;
+      max-width: 868px;
+
+      > .button {
+        transition: transform $transition;
+
+        &:hover {
+          transform: rotate(180deg);
+        }
+
+        > svg {
+          fill: $white;
+          height: 16px;
+          width: 16px;
+        }
+      }
+  
+      > .iframe-container {
+        width: 100%;
+        padding-bottom: 56.25%;
+        position: relative;
+  
+        > iframe {
+          height: 100%;
+          width: 100%;
+          left: 0;
+          position: absolute;
+          top: 0;
+        }
+      }
+    }
+  }
+}
